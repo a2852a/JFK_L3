@@ -11,6 +11,6 @@
       <Button fx:id="loadWindowButtonOpen" layoutX="261.0" layoutY="64.0" mnemonicParsing="false" text="Open" />
       <Text fx:id="loadWindowPath" layoutX="14.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="230.0" />
       <Text layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose folder with classes to load:" textAlignment="CENTER" wrappingWidth="390.0" />
-      <Button fx:id="loadWindowButtonLoad" layoutX="323.0" layoutY="64.0" mnemonicParsing="false" text="Load" />
+      <Button fx:id="loadWindowButtonLoad" disable="true" layoutX="323.0" layoutY="64.0" mnemonicParsing="false" text="Load" />
    </children>
 </Pane>

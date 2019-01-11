@@ -8,9 +8,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    Stage window;
+    Scene scene1, scene2;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         Parent root  = FXMLLoader.load(getClass().getResource("load_window.fxml"));
         primaryStage.setTitle("Class loader");
         primaryStage.setScene(new Scene(root, 390, 105));

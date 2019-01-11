@@ -1,8 +1,15 @@
 package sample;
 
-public class ExampleClass {
+public class ExampleClass implements CallableDouble {
 
-    private double pow(double x, double p){
+
+    @Override
+    public double oppositeNumber(double number){
+        return 1.0 / number;
+    }
+
+    @Override
+    public double pow(double x, double p){
         return Math.pow(x,p);
     }
 
@@ -14,8 +21,6 @@ public class ExampleClass {
         return s1.concat(s2);
     }
 
-    private double oppositeNumber(double number){
-        return 1.0 / number;
-    }
+
 
 }
