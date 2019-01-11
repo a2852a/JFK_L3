@@ -1,4 +1,4 @@
-package sample;
+package sample.callable;
 
 public interface CallableDouble {
     double pow(double x, double p);

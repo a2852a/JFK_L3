@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/JFK_lab3.iml" filepath="$PROJECT_DIR$/JFK_lab3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../JFK_lab3_dependent/JFK_lab3_dependent.iml" filepath="$PROJECT_DIR$/../JFK_lab3_dependent/JFK_lab3_dependent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JFK_lab3_dependent/JFK_lab3_dependent.iml" filepath="$PROJECT_DIR$/JFK_lab3_dependent/JFK_lab3_dependent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JFK_lab3_dependent1/JFK_lab3_dependent1.iml" filepath="$PROJECT_DIR$/JFK_lab3_dependent1/JFK_lab3_dependent1.iml" />
     </modules>
   </component>
 </project>

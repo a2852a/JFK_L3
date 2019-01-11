@@ -12,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -33,16 +32,17 @@ public class loadWindowController implements Initializable {
     @FXML
     private Text loadWindowPath;
 
-    public loadWindowController(){}
+    public loadWindowController() {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadWindowButtonOpen.setOnAction(this::openFolderExploer);
+        loadWindowButtonOpen.setOnAction(this::openFolderExplorer);
         loadWindowButtonLoad.setOnAction(this::loadFolder);
     }
 
 
-    private void openFolderExploer(ActionEvent actionEvent){
+    private void openFolderExplorer(ActionEvent actionEvent) {
         ModuleLoader loaderInstance = ModuleLoader.getInstance();
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
@@ -53,51 +53,41 @@ public class loadWindowController implements Initializable {
 
         if (loaderInstance.getDirectory() != null) {
             String path = loaderInstance.getDirectory().getAbsolutePath();
-            if(path.length() >= 37){path = path.substring(0,36).concat("...");}
+            if (path.length() >= 37) {
+                path = path.substring(0, 36).concat("...");
+            }
             loadWindowPath.setText(path);
             loadWindowButtonLoad.setDisable(false);
         }
     }
 
-    private void loadFolder(ActionEvent actionEvent){
+    private void loadFolder(ActionEvent actionEvent) {
         ModuleLoader loaderInstance = ModuleLoader.getInstance();
-        if(loaderInstance.getDirectory() !=null)
-            if(loaderInstance.loadClasses()){
+        if (loaderInstance.getDirectory() != null)
+            if (loaderInstance.loadClasses()) {
                 try {
                     loadMainScene();
-                }catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                     //TODO UNEXPECTED ERROR
-                     }
-            }
-            else{
+                }
+            } else {
                 setErrorLoading();
             }
     }
 
-    private void loadMainScene() throws Exception{
-       Stage stage = (Stage) loadWindowPane.getScene().getWindow();
-        Parent parent  = FXMLLoader.load(getClass().getResource("main_window.fxml"));
-       stage.setScene(new Scene(parent, 335, 500));
-       stage.setResizable(false);
-       //stage.show();
+    private void loadMainScene() throws Exception {
+        Stage stage = (Stage) loadWindowPane.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("view/main_window.fxml"));
+        stage.setScene(new Scene(parent, 335, 500));
+        stage.setResizable(false);
+        //stage.show();
     }
 
 
-    public void setErrorLoading(){
+    public void setErrorLoading() {
         loadWindowPath.setText("Error - is path correct?");
         loadWindowButtonLoad.setDisable(false);
     }
 
-    public void setLoadWindowButtonOpen(Button loadWindowButtonOpen) {
-        this.loadWindowButtonOpen = loadWindowButtonOpen;
-    }
-
-    public Text getLoadWindowPath() {
-        return loadWindowPath;
-    }
-
-    public void setLoadWindowPath(Text loadWindowPath) {
-        this.loadWindowPath = loadWindowPath;
-    }
 }

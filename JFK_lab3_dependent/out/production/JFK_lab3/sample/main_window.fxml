@@ -8,11 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainWindowController">
+
+<AnchorPane prefHeight="501.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainWindow">
    <children>
-      <ListView fx:id="mainWindowList" layoutX="61.0" layoutY="70.0" prefHeight="200.0" prefWidth="207.0" />
+      <ListView fx:id="main_window_method_list" layoutX="61.0" layoutY="70.0" prefHeight="200.0" prefWidth="207.0" />
       <Text layoutX="107.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loaded methods:" />
-      <GridPane fx:id="mainWindowGrid" layoutX="68.0" layoutY="314.0">
+      <GridPane fx:id="main_window_input_grid" layoutX="68.0" layoutY="314.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -30,8 +31,8 @@
       </GridPane>
       <Text layoutX="145.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input:" />
       <Text layoutX="68.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Result:" />
-      <Text fx:id="mainWindowResult" layoutX="50.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="80.0" />
-      <Button fx:id="mainWindowButtonRun" layoutX="222.0" layoutY="440.0" mnemonicParsing="false" text="Run" />
+      <Text fx:id="main_window_result" layoutX="50.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="80.0" />
+      <Button fx:id="main_window_run" layoutX="222.0" layoutY="440.0" mnemonicParsing="false" text="Run" />
       <Line endX="100.0" layoutX="168.0" layoutY="397.0" startX="-100.0" stroke="#949494" />
    </children>
 </AnchorPane>
