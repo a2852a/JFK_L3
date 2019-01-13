@@ -55,9 +55,7 @@ public class mainWindowController implements Initializable {
             if (result == null) mainWindowResult.setText("ERROR");
             else mainWindowResult.setText(result);
         }
-
     }
-
 
     private void setupListView() {
         ObservableList<String> items = FXCollections.observableArrayList(
@@ -98,6 +96,4 @@ public class mainWindowController implements Initializable {
         else mainWindowPar2.setDisable(true);
 
     }
-
-
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="loadWindowPane" maxHeight="105.0" maxWidth="390.0" minHeight="105.0" minWidth="390.0" prefHeight="105.0" prefWidth="390.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loadWindowController">
+   <children>
+      <Button fx:id="loadWindowButtonOpen" layoutX="261.0" layoutY="64.0" mnemonicParsing="false" text="Open" />
+      <Text fx:id="loadWindowPath" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" textAlignment="CENTER" wrappingWidth="230.0" />
+      <Text layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose folder with classes to load:" textAlignment="CENTER" wrappingWidth="390.0" />
+      <Button fx:id="loadWindowButtonLoad" disable="true" layoutX="323.0" layoutY="64.0" mnemonicParsing="false" text="Load" />
+   </children>
+</Pane>

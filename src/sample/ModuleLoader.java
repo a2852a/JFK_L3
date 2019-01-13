@@ -17,9 +17,6 @@ import java.util.jar.JarFile;
 
 public class ModuleLoader {
 
-    final private int compilationUnitLimit = 2;
-    final private int classReadLimit = 2;
-
     private static ModuleLoader instance;
 
     private File directory;
@@ -64,14 +61,7 @@ public class ModuleLoader {
                 try {
                     Class<?> c = cl.loadClass(className);
 
-                    if (CallableDouble.class.isAssignableFrom(c))
-                        readCallableDoubleMethods(c);
-                    else if (CallableString.class.isAssignableFrom(c))
-                        readCallableStringMethods(c);
-                    else if (CallableBoolean.class.isAssignableFrom(c))
-                        readCallableBooleanMethods(c);
-                    else if (CallableVoid.class.isAssignableFrom(c))
-                        readCallableVoidMethods(c);
+                    assignClassMethods(c);
 
                 } catch (ClassNotFoundException exp) {
                     continue;
@@ -84,6 +74,42 @@ public class ModuleLoader {
                 jarFile.close();
         }
     }
+
+    private void readClassFile(File file) throws Exception{
+        String path = file.getParent();
+        String className = file.getName();
+        className = className.substring(0,className.indexOf("."));
+
+        file = new File(path);
+
+        URL url = file.toURI().toURL();
+        URL[] urls = new URL[]{url};
+
+        ClassLoader cl = new URLClassLoader(urls);
+        Class<?> c = cl.loadClass(className);
+
+            assignClassMethods(c);
+
+    }
+
+    public boolean loadClasses() {
+        for (File file : directory.listFiles()) {
+            try {
+                if (file.getName().endsWith(".jar")) readJarFile(file);
+                else
+                if(file.getName().endsWith(".class")) readClassFile(file);
+            } catch (Exception e) {
+                System.out.print(e);
+                return false;
+            }
+        }
+        if (callableDouble == null & callableBoolean == null
+                & callableString == null & callableVoid == null)
+            return false;
+        else
+        return true;
+    }
+
 
 
     public LinkedList<String> getLoadedMethodNames() {
@@ -128,24 +154,24 @@ public class ModuleLoader {
 
     public static boolean isDeclaredInInterface(Method method, Class<?> interfaceClass) {
         for (Method methodInInterface : interfaceClass.getMethods()) {
-            if (methodInInterface.getName().equals(method.getName())) {
+            if (methodInInterface.getName().equals(method.getName()))
                 return true;
-            }
         }
         return false;
     }
 
 
-    public boolean loadClasses() {
-        for (File file : directory.listFiles()) {
-            try {
-                if (file.getName().endsWith(".jar")) readJarFile(file);
-            } catch (Exception e) {
-                return false;
-            }
-        }
-        if (callableDouble == null) return false;
-        return true;
+    private void assignClassMethods(Class c) throws Exception{
+
+        if (CallableDouble.class.isAssignableFrom(c))
+            readCallableDoubleMethods(c);
+        else if (CallableString.class.isAssignableFrom(c))
+            readCallableStringMethods(c);
+        else if (CallableBoolean.class.isAssignableFrom(c))
+            readCallableBooleanMethods(c);
+        else if (CallableVoid.class.isAssignableFrom(c))
+            readCallableVoidMethods(c);
+
     }
 
     private void readCallableDoubleMethods(Class c) throws Exception {
