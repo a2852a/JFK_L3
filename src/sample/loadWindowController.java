@@ -72,7 +72,7 @@ public class loadWindowController implements Initializable {
                 } catch (Exception e) {
                     System.out.println(e);
                     setErrorLoading();
-                    //TODO UNEXPECTED ERROR
+                    //UNEXPECTED ERROR
                 }
             } else {
                 setErrorLoading();
