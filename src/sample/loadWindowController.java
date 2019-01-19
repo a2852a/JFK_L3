@@ -61,7 +61,9 @@ public class loadWindowController implements Initializable {
         }
     }
 
+
     private void loadFolder(ActionEvent actionEvent) {
+        try{
         ModuleLoader loaderInstance = ModuleLoader.getInstance();
         if (loaderInstance.getDirectory() != null)
             if (loaderInstance.loadClasses()) {
@@ -69,11 +71,15 @@ public class loadWindowController implements Initializable {
                     loadMainScene();
                 } catch (Exception e) {
                     System.out.println(e);
+                    setErrorLoading();
                     //TODO UNEXPECTED ERROR
                 }
             } else {
                 setErrorLoading();
             }
+    }catch(NoClassDefFoundError e){
+            setErrorLoading();
+    }
     }
 
     private void loadMainScene() throws Exception {
