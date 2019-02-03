@@ -88,21 +88,21 @@ public class ModuleLoader {
 
     }
 
-    public boolean loadClasses() throws Exception{
+    public boolean loadClasses() throws Exception {
         int filesLoaded = 0;
         for (File file : directory.listFiles()) {
-            //try {
-                if (file.getName().endsWith(".jar")){ readJarFile(file); filesLoaded++;}
-                else if (file.getName().endsWith(".class")){ readClassFile(file); filesLoaded++;}
-           // } catch (Exception e) {
-                //System.out.print(e);
-               // return false;
-           // }
+            if (file.getName().endsWith(".jar")) {
+                readJarFile(file);
+                filesLoaded++;
+            } else if (file.getName().endsWith(".class")) {
+                readClassFile(file);
+                filesLoaded++;
+            }
         }
-        if(filesLoaded != 0)
-        return true;
+        if (filesLoaded != 0)
+            return true;
         else
-        return false;
+            return false;
     }
 
     private void assignClassMethods(Class c) throws Exception {
@@ -132,9 +132,9 @@ public class ModuleLoader {
         String suffix = checkForExisting(inputClass);
         LoadedModule newModule = new LoadedModule(recognizedClass, suffix, inputClass.getConstructor().newInstance());
 
-        String description="";
-        Description[] descriptions = (Description[])inputClass.getAnnotationsByType(Description.class);
-        if(descriptions.length > 0) {
+        String description = "";
+        Description[] descriptions = (Description[]) inputClass.getAnnotationsByType(Description.class);
+        if (descriptions.length > 0) {
             for (Description desc : descriptions) {
                 description += desc.value();
             }
@@ -204,10 +204,10 @@ public class ModuleLoader {
         this.directory = directory;
     }
 
-    public String getDescription(String key){
+    public String getDescription(String key) {
         String description = methodList.get(key).getModule().getDescription();
 
-        if(description == null) return "No description available";
+        if (description == null) return "No description available";
         else
             return description;
 
