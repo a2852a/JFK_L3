@@ -1,4 +1,3 @@
-import jdk.jfr.Description;
 import sample.callable.CallableString;
 
 public final class StringOperation implements CallableString {
@@ -9,7 +8,7 @@ public final class StringOperation implements CallableString {
 
     @Override
     public String toUpperCase(String s) {
-        return "test";
+        return s.toUpperCase();
     }
 
     @Override

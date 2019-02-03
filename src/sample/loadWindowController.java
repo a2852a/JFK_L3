@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class loadWindowController implements Initializable {
 
-    //Load window
 
     @FXML
     private Pane loadWindowPane;
@@ -67,17 +66,12 @@ public class loadWindowController implements Initializable {
         ModuleLoader loaderInstance = ModuleLoader.getInstance();
         if (loaderInstance.getDirectory() != null)
             if (loaderInstance.loadClasses()) {
-                try {
                     loadMainScene();
-                } catch (Exception e) {
-                    System.out.println(e);
-                    setErrorLoading();
-                    //UNEXPECTED ERROR
                 }
-            } else {
-                setErrorLoading();
+             else {
+                 setNoFilesFound();
             }
-    }catch(NoClassDefFoundError e){
+    }catch(Exception|NoClassDefFoundError e){
             setErrorLoading();
     }
     }
@@ -87,12 +81,16 @@ public class loadWindowController implements Initializable {
         Parent parent = FXMLLoader.load(getClass().getResource("view/main_window.fxml"));
         stage.setScene(new Scene(parent, 335, 585));
         stage.setResizable(false);
-        //stage.show();
     }
 
 
-    public void setErrorLoading() {
+    private void setErrorLoading() {
         loadWindowPath.setText("Error - is path correct?");
+        loadWindowButtonLoad.setDisable(false);
+    }
+
+    private void setNoFilesFound(){
+        loadWindowPath.setText("Error - No files where found");
         loadWindowButtonLoad.setDisable(false);
     }
 

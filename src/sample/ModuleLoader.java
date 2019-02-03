@@ -88,17 +88,21 @@ public class ModuleLoader {
 
     }
 
-    public boolean loadClasses() {
+    public boolean loadClasses() throws Exception{
+        int filesLoaded = 0;
         for (File file : directory.listFiles()) {
-            try {
-                if (file.getName().endsWith(".jar")) readJarFile(file);
-                else if (file.getName().endsWith(".class")) readClassFile(file);
-            } catch (Exception e) {
+            //try {
+                if (file.getName().endsWith(".jar")){ readJarFile(file); filesLoaded++;}
+                else if (file.getName().endsWith(".class")){ readClassFile(file); filesLoaded++;}
+           // } catch (Exception e) {
                 //System.out.print(e);
-                return false;
-            }
+               // return false;
+           // }
         }
+        if(filesLoaded != 0)
         return true;
+        else
+        return false;
     }
 
     private void assignClassMethods(Class c) throws Exception {
