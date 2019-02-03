@@ -85,7 +85,7 @@ public class loadWindowController implements Initializable {
     private void loadMainScene() throws Exception {
         Stage stage = (Stage) loadWindowPane.getScene().getWindow();
         Parent parent = FXMLLoader.load(getClass().getResource("view/main_window.fxml"));
-        stage.setScene(new Scene(parent, 335, 500));
+        stage.setScene(new Scene(parent, 335, 585));
         stage.setResizable(false);
         //stage.show();
     }

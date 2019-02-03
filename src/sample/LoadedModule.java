@@ -10,6 +10,7 @@ public class LoadedModule {
     private Class c;
     private String suffix;
     private Object instance;
+    private String description;
 
 
     public LoadedModule(Class c, String suffix, Object instance){
@@ -144,5 +145,13 @@ public class LoadedModule {
 
     public void setC(Class c) {
         this.c = c;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

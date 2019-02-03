@@ -32,6 +32,9 @@ public class mainWindowController implements Initializable {
     @FXML
     private TextField mainWindowPar2;
 
+    @FXML
+    private TextField mainWindowDescription;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         mainWindowButtonRun.setOnAction(this::runSelected);
@@ -64,25 +67,23 @@ public class mainWindowController implements Initializable {
         mainWindowList.setItems(items);
         mainWindowList.getSelectionModel().clearSelection();
 
-        mainWindowList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                mainWindowPar1.clear();
-                mainWindowPar2.clear();
-                int parCount = ModuleLoader.getInstance().getMethodParamCount((String)newValue);
-                switch (parCount) {
-                    case 0: {
-                        inputControl(false, false);
-                        break;
-                    }
-                    case 1: {
-                        inputControl(true, false);
-                        break;
-                    }
-                    case 2: {
-                        inputControl(true, true);
-                        break;
-                    }
+        mainWindowList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            mainWindowPar1.clear();
+            mainWindowPar2.clear();
+            mainWindowDescription.setText(ModuleLoader.getInstance().getDescription((String)newValue));
+            int parCount = ModuleLoader.getInstance().getMethodParamCount((String)newValue);
+            switch (parCount) {
+                case 0: {
+                    inputControl(false, false);
+                    break;
+                }
+                case 1: {
+                    inputControl(true, false);
+                    break;
+                }
+                case 2: {
+                    inputControl(true, true);
+                    break;
                 }
             }
         });

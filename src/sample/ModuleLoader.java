@@ -1,5 +1,6 @@
 package sample;
 
+import jdk.jfr.Description;
 import sample.callable.CallableBoolean;
 import sample.callable.CallableDouble;
 import sample.callable.CallableString;
@@ -126,8 +127,19 @@ public class ModuleLoader {
     private void addModule(Class recognizedClass, Class inputClass) throws Exception {
         String suffix = checkForExisting(inputClass);
         LoadedModule newModule = new LoadedModule(recognizedClass, suffix, inputClass.getConstructor().newInstance());
+
+        String description="";
+        Description[] descriptions = (Description[])inputClass.getAnnotationsByType(Description.class);
+        if(descriptions.length > 0) {
+            for (Description desc : descriptions) {
+                description += desc.value();
+            }
+            newModule.setDescription(description);
+        }
+
         moduleList.add(newModule);
         addMethodsToMap(suffix, recognizedClass.getMethods(), newModule);
+
     }
 
 
@@ -186,6 +198,15 @@ public class ModuleLoader {
 
     public void setDirectory(File directory) {
         this.directory = directory;
+    }
+
+    public String getDescription(String key){
+        String description = methodList.get(key).getModule().getDescription();
+
+        if(description == null) return "No description available";
+        else
+            return description;
+
     }
 
 

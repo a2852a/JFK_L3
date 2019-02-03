@@ -1,5 +1,7 @@
+import jdk.jfr.Description;
 import sample.callable.CallableDouble;
 
+@Description("double input, double output")
 public final class MathOperation implements CallableDouble {
     @Override
     public double oppositeNumber(double number){
