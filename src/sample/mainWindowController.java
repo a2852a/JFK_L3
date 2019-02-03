@@ -48,7 +48,7 @@ public class mainWindowController implements Initializable {
 
         String result = null;
         try {
-            result = ModuleLoaderUp.getInstance().invokeMethod(selectedValue, args);
+            result = ModuleLoader.getInstance().invokeMethod(selectedValue, args);
         } catch (Exception e) {
             //System.out.println(e);
         } finally {
@@ -59,7 +59,7 @@ public class mainWindowController implements Initializable {
 
     private void setupListView() {
         ObservableList<String> items = FXCollections.observableArrayList(
-                ModuleLoaderUp.getInstance().getLoadedMethodNames()
+                ModuleLoader.getInstance().getLoadedMethodNames()
         );
         mainWindowList.setItems(items);
         mainWindowList.getSelectionModel().clearSelection();
@@ -69,7 +69,7 @@ public class mainWindowController implements Initializable {
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 mainWindowPar1.clear();
                 mainWindowPar2.clear();
-                int parCount = ModuleLoaderUp.getInstance().getMethodParamCount((String)newValue);
+                int parCount = ModuleLoader.getInstance().getMethodParamCount((String)newValue);
                 switch (parCount) {
                     case 0: {
                         inputControl(false, false);

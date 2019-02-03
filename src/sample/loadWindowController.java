@@ -43,7 +43,7 @@ public class loadWindowController implements Initializable {
 
 
     private void openFolderExplorer(ActionEvent actionEvent) {
-        ModuleLoaderUp loaderInstance = ModuleLoaderUp.getInstance();
+        ModuleLoader loaderInstance = ModuleLoader.getInstance();
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setInitialDirectory(Paths.get("").toAbsolutePath().toFile());
@@ -64,7 +64,7 @@ public class loadWindowController implements Initializable {
 
     private void loadFolder(ActionEvent actionEvent) {
         try{
-        ModuleLoaderUp loaderInstance = ModuleLoaderUp.getInstance();
+        ModuleLoader loaderInstance = ModuleLoader.getInstance();
         if (loaderInstance.getDirectory() != null)
             if (loaderInstance.loadClasses()) {
                 try {
