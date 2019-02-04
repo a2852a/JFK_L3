@@ -46,6 +46,21 @@ public class mainWindowController implements Initializable {
         String par1 = mainWindowPar1.getText();
         String par2 = mainWindowPar2.getText();
 
+        Object selected = mainWindowList.getSelectionModel().getSelectedItem();
+
+        if(selected == null){mainWindowResult.setText("No method has been selected"); return;}
+
+        String selectedKey = selected.toString();
+
+        int filledPars = 0;
+        if(!par1.equals("")) filledPars++;
+        if(!par2.equals("")) filledPars++;
+
+        if(ModuleLoader.getInstance().getMethodParamCount(selectedKey) != filledPars){
+            mainWindowResult.setText("Not enough parameters");
+            return;
+        }
+
         Object[] args = new Object[]{par1, par2};
         Object selectedValue = mainWindowList.getSelectionModel().getSelectedItem();
 
